@@ -1,7 +1,6 @@
 package queues
 
 import (
-	"reflect"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -25,7 +24,8 @@ func TestQueue_GetValues(t *testing.T) {
 	queue := New[string]()
 
 	queue.Enqueue("hello", "abc", "xyz")
-	assert.True(t, reflect.DeepEqual(queue.GetValues(), []string{"hello", "abc", "xyz"}))
+	// assert.True(t, reflect.DeepEqual(queue.GetValues(), []string{"hello", "abc", "xyz"}))
+	assert.Equal(t, queue.GetValues(), []string{"hello", "abc", "xyz"})
 }
 
 func TestQueue_Peek(t *testing.T) {
