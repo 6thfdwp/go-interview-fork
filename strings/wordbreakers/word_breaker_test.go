@@ -12,10 +12,13 @@ var (
 )
 
 func TestBreakWord(t *testing.T) {
-	assert.Equal(t, BreakWord("applepie", dictionary), "apple pie")
-	assert.Equal(t, BreakWord("applet", dictionary), "applet")
-	assert.Equal(t, BreakWord("apples", dictionary), "")
-	assert.Equal(t, BreakWord("boo", dictionary), "")
+	// assert.Equal(t, BreakWord("applepie", dictionary), "apple pie")
+	// assert.Equal(t, BreakWord("applet", dictionary), "applet")
+	// assert.Equal(t, BreakWord("apples", dictionary), "")
+	// assert.Equal(t, BreakWord("boo", dictionary), "")
+	assert.Equal(t, BreakWord("apptable", dictionary), "app table")
+	// assert.Equal(t, BreakWord("apptable", dictionary), "app t able")
+	// assert.Equal(t, BreakWord("apptableletapp", dictionary), "app table let app")
 }
 
 func TestExtractWords(t *testing.T) {

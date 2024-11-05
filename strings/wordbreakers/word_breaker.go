@@ -34,6 +34,7 @@ func breakWord(input string, dictionary *hashsets.HashSet[string], cache map[str
 	inputRunes := []rune(input)
 	for i := 1; i < len(input); i++ {
 		prefix := string(inputRunes[0:i])
+		// prefix := string(input[0:i])
 		if dictionary.Contains(prefix) {
 			suffix := string(inputRunes[i:])
 			brokenSuffix := breakWord(suffix, dictionary, cache)
