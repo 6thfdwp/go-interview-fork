@@ -63,7 +63,14 @@ func (q *Queue[T]) Peek() (res T, err error) {
 
 // GetValues returns values
 func (q *Queue[T]) GetValues() []T {
-	values := make([]T, 0, q.Size())
-	values = append(values, q.array...)
+	// values := make([]T, 0, q.Size())
+	values := make([]T, q.Size())
+	// values := make([]T, 0)
+	// n := copy(values, q.array)
+	for i, e := range q.array {
+		values[i] = e
+	}
+
+	// values = append(values, q.array...)
 	return values
 }
