@@ -17,6 +17,9 @@ type MovingAverage struct {
 }
 
 // Add adds a number to the moving average calculations
+/**
+ * Time: O(N) N is size of the window, if enqueue involves realloc
+**/
 func (ma *MovingAverage) Add(number int) {
 	ma.sum += number
 	ma.queue.Enqueue(number)

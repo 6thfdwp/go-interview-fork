@@ -23,4 +23,15 @@ func TestRunningAverage(t *testing.T) {
 	assert.Equal(t, runningAverage.GetAverage(), float64(2))
 	assert.Equal(t, runningAverage.GetSum(), 6)
 	assert.Equal(t, runningAverage.GetCount(), 3)
+
+	runningAverage.Add(5)
+	assert.Equal(t, runningAverage.GetAverage(), float64(2.75))
+	assert.Equal(t, runningAverage.GetSum(), 11)
+	assert.Equal(t, runningAverage.GetCount(), 4)
+
+	runningAverage.Add(9)
+	runningAverage.Add(10)
+	// assert.Equal(t, runningAverage.GetAverage(), float64(2.75))
+	assert.Equal(t, runningAverage.GetSum(), 30)
+	assert.Equal(t, runningAverage.GetCount(), 6)
 }
