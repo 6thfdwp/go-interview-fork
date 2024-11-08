@@ -1,6 +1,7 @@
 package queues
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -61,4 +62,37 @@ func TestQueue_Dequeue(t *testing.T) {
 
 	_, err = queue.Dequeue()
 	assert.NotNil(t, err)
+}
+
+// BenchmarkEnqueue-10    	 8999667	       130.4 ns/op	     115 B/op	       2 allocs/op
+func BenchmarkEnqueue(b *testing.B) {
+	q := New[string]()
+	for i := 0; i < b.N; i++ {
+		q.Enqueue("v" + fmt.Sprintf("%d", i))
+	}
+
+	b.ReportAllocs()
+}
+
+func seedQueue(q *Queue[string], num int) {
+	for n := 0; n < num; n++ {
+		q.Enqueue("v" + fmt.Sprintf("%d", n))
+	}
+}
+func BenchmarkDequeue(b *testing.B) {
+	q := New[string]()
+	seedQueue(q, 800000)
+	// fmt.Println("init len: ", q.Size())
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		// q.Enqueue("v" + fmt.Sprintf("%d", i))
+		if _, err := q.Dequeue(); err != nil {
+			break
+		}
+	}
+	b.StopTimer()
+
+	b.ReportAllocs()
+	// b.ReportMetric()
 }
