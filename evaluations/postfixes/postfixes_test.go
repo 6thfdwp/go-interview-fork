@@ -14,7 +14,7 @@ func TestPostfix(t *testing.T) {
 	}{
 		{
 			"Test valid postfix",
-			args{"2 3 +"},
+			args{"2 3 + 5 2 / -"},
 			5.0,
 			false,
 		},
@@ -44,6 +44,7 @@ func TestPostfix(t *testing.T) {
 		},
 	}
 	for _, tt := range tests {
+
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := Evaluate(tt.args.expression)
 			if (err != nil) != tt.wantErr {

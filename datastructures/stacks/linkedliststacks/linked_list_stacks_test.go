@@ -62,3 +62,33 @@ func TestStack_Pop(t *testing.T) {
 	_, err = stack.Pop()
 	assert.NotNil(t, err)
 }
+
+// BenchmarkLLStackPush-10         29066187
+// 44.31 ns/op   16 B/op    1 allocs/op
+// 1 alloc/op should be for linked list node
+func BenchmarkLLStackPush(b *testing.B) {
+	stack := New[int]()
+	for i := 0; i < b.N; i++ {
+		stack.Push(i)
+	}
+}
+
+func seedStack(s *Stack[int], num int) {
+	for n := 0; n < num; n++ {
+		s.Push(n)
+	}
+}
+
+// pop need to find the el at the end, complexity grow fast
+func BenchmarkLLStackPop(b *testing.B) {
+	stack := New[int]()
+	seedStack(stack, 1000)
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		if _, err := stack.Pop(); err != nil {
+			break
+		}
+	}
+	// b.StopTimer()
+}

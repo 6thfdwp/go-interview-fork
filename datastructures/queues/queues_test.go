@@ -93,6 +93,6 @@ func BenchmarkDequeue(b *testing.B) {
 	}
 	b.StopTimer()
 
-	b.ReportAllocs()
+	// b.ReportAllocs()
 	// b.ReportMetric()
 }

@@ -62,3 +62,28 @@ func TestStack_Pop(t *testing.T) {
 	_, err = stack.Pop()
 	assert.NotNil(t, err)
 }
+
+func BenchmarkStackPush(b *testing.B) {
+	stack := New[int]()
+	for i := 0; i < b.N; i++ {
+		stack.Push(i)
+	}
+}
+
+func seedStack(s *Stack[int], num int) {
+	for n := 0; n < num; n++ {
+		s.Push(n)
+	}
+}
+func BenchmarkLLStackPop(b *testing.B) {
+	stack := New[int]()
+	seedStack(stack, 100000)
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		if _, err := stack.Pop(); err != nil {
+			break
+		}
+	}
+	// b.StopTimer()
+}

@@ -33,5 +33,5 @@ func BenchmarkFIFOList(b *testing.B) {
 		q.Enqueue("v" + fmt.Sprintf("%d", i))
 	}
 
-	b.ReportAllocs()
+	// b.ReportAllocs()
 }
