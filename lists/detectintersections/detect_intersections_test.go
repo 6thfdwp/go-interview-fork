@@ -14,6 +14,7 @@ func TestDoIntersect(t *testing.T) {
 
 	nonEmptyList1 := singlylinkedlists.New("A", "B", "C")
 	nonEmptyList2 := singlylinkedlists.New("A", "B", "C")
+
 	assert.False(t, DoIntersect(nonEmptyList1.GetHead(), nonEmptyList2.GetHead()))
 
 	node1 := &singlylinkedlists.SLLNode[string]{Value: "X"}
